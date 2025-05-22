@@ -1,13 +1,8 @@
-# System-Monitoring-Dashboard
-A real-time web-based monitoring tool using Bash scripting and Apache HTTPD. It tracks OS info, CPU uptime, memory usage, disk usage, and active processes dynamically.
+# 🖥️ System Monitoring Dashboard with SNS Alerts  
 
-🚀 Features ✔ Live system insights (CPU, Memory, Disk) ✔ Top processes by CPU & Memory ✔ Web-based dashboard (HTML, CSS) ✔ Auto-refresh with Apache CGI
+**A real-time system monitoring solution** using **Bash scripting, Apache HTTPD, and AWS SNS**. This project tracks system metrics like **CPU usage, memory, disk space, and top processes**, while also triggering **automated SNS notifications** when resource thresholds are exceeded.
 
 🔧 Use Cases: ✅ Server monitoring ✅ Resource management ✅ Lightweight tracking
-
-# 🖥️ System Monitoring Dashboard
-
-A real-time **system monitoring dashboard** built using **Bash scripting** and served via **Apache HTTPD**. This project provides live insights into **OS information, CPU uptime, memory usage, disk usage, and top processes**.
 
 ## 🚀 Features
 
@@ -18,6 +13,12 @@ A real-time **system monitoring dashboard** built using **Bash scripting** and s
 - 💾 **Disk Usage** – Tracks total size, used space, and available space with percentage.
 - 🔥 **Top Processes** – Lists the top 5 processes by CPU and memory usage.
 - 🌐 **Web-Based Dashboard** – Accessible via a browser with a simple HTML and CSS interface.
+- ✔ **SNS Alerts for High Usage** – Sends **automatic notifications** for critical CPU, memory, and disk space thresholds  
+
+## 📢 SNS Alert Integration  
+Now, the dashboard includes **AWS SNS Alerts** to notify users when system metrics exceed safe limits.  
+🚀 If **CPU usage exceeds 80%**, **memory exceeds 85%**, or **disk space exceeds 90%**, an SNS notification is triggered!  
+🚀 Features ✔ Live system insights (CPU, Memory, Disk) ✔ Top processes by CPU & Memory ✔ Web-based dashboard (HTML, CSS) ✔ Auto-refresh with Apache CGI
 
 ## 🏗️ Setup & Installation
 
@@ -74,3 +75,57 @@ Also you you can run your CMD in Same system.
 ```
 
 ![in same system](./CMD_status.png)
+
+## 📢 SNS Alert 
+
+📌 Step 1: Install & Configure AWS CLI
+First, install AWS CLI and configure your credentials:
+
+```bash
+sudo apt install awscli -y   # Ubuntu/Debian
+sudo yum install awscli -y   # CentOS/RHEL
+aws configure
+```
+
+Enter your AWS Access Key, Secret Key, Region, and Output format.
+
+📌 Step 2: Create an SNS Topic
+Go to AWS SNS Console.
+
+Click "Create Topic" → Choose Standard.
+
+Name the topic (e.g., HighMetricsAlerts).
+
+Click "Create Topic".
+
+📌 Step 3: Create an SNS Subscription
+Click on your SNS Topic.
+
+Select "Create Subscription".
+
+Choose Protocol (e.g., Email, SMS).
+
+Enter the recipient endpoint (e.g., email or phone).
+
+Click "Create Subscription".
+
+Run the Alert Script Separately
+
+📌 Step 4: Keep your SNS alert script (system_alerts.sh) as a background process.
+Use Cron Jobs to schedule it every 5 minutes:
+
+```bash
+crontab -e
+```
+
+Add:
+
+```bash
+*/5 * * * * /path/to/system_alerts.sh
+```
+
+📢 What Happens?
+🔹 Dashboard (system_info.sh) → Displays live system metrics in the browser. 
+🔹 Alerts (system_alerts.sh) → Runs separately & triggers SNS alerts when metrics exceed thresholds.
+
+🚀 Now, your system will have both a web-based dashboard AND automated notifications!
