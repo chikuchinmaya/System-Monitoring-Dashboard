@@ -35,6 +35,7 @@ sudo systemctl enable httpd
 git pull https://github.com/chikuchinmaya/System-Monitoring-Dashboard.git
 sudo mv system_info.sh /var/www/cgi-bin/
 sudo chmod +x /var/www/cgi-bin/system_info.sh
+```
 
 3. Enable CGI in Apache
 Modify your Apache config file:
@@ -45,6 +46,7 @@ sudo nano /etc/apache2/apache2.conf  # Ubuntu/Debian
 ```
 
 Add:
+
 ```bash
 ScriptAlias /cgi-bin/ "/var/www/cgi-bin/"
 <Directory "/var/www/cgi-bin">
@@ -58,3 +60,17 @@ Restart Apache:
 ```bash
 sudo systemctl restart httpd
 ```
+Access the Dashboard
+Open your browser and visit:
+
+http://your_IP/cgi-bin/system_info.sh
+
+![Dashboard](./Dashboard.png)
+
+Also you you can run your CMD in Same system.
+
+```bash
+./system_info.sh
+```
+
+![in same system](./CMD_status.png)
