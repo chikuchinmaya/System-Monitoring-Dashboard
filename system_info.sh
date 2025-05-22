@@ -3,7 +3,7 @@
 echo "Content-type: text/html"
 echo ""
 echo "<html><head><title>Chinmaya's System Monitoring Dashboard</title></head><body>"
-echo "<h2>System Status Report</h2>"
+echo "<h2>Chinmaya's System Status Report</h2>"
 echo "<pre>"
 
 # ------------------------ OS Info ------------------------
